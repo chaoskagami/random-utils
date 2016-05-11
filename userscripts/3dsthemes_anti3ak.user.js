@@ -21,14 +21,14 @@ window.oldInterval = window.setInterval;
 // See, we're a hack. We replace setinterval.
 window.setInterval = function(fun, time) {
   // This could have false positives, but w/e we'll fix it someday
-  var test = fun.toString().search("adblock");
+  var test = fun.toString().search("anti adblock killer");
+
   if (test > 0) {
     console.log("Anti-AAK detected. Die in a fire.");
-    pageLoaded = true;
+    window.pageLoaded = true;
     return 0;
-  } else {
-    console.log("Calling setInterval normally.");
-    return window.oldInterval(fun, time);
   }
-  return 0;
+
+  console.log("Calling setInterval normally.");
+  return window.oldInterval(fun, time);
 };
